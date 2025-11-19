@@ -1,0 +1,180 @@
+<link rel="stylesheet" href="icons.css">
+
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --icon: #292d33;
+  }
+
+  body {
+    font-family: Segoe UI, Arial, sans-serif;
+    margin: 24px;
+    background: var(--bg);
+  }
+
+  .demo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 600
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 8px
+  }
+
+  .search input {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e6eef8;
+    min-width: 260px;
+    background: white;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04)
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 14px
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 12px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    transition: transform .16s ease, box-shadow .16s ease
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12)
+  }
+
+  .icon {
+    font-size: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    color: var(--icon);
+    background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), transparent)
+  }
+
+  .label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 10px
+  }
+
+  .count {
+    font-size: 13px;
+    color: var(--muted);
+    display: none;
+  }
+  .usage-demo {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .usage-example {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .usage-icon i {
+    font-size: 20px;
+    line-height: 1;
+    color: var(--icon);
+  }
+  .usage-snippet {
+    background: #f3f4f6;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #111827;
+    white-space: pre-wrap;
+    margin: 0;
+    display: inline-block;
+  }
+</style>
+
+<div class="demo-header">
+  <div>
+    <div class="title">Icons demo</div>
+      <div class="count">- icons available</div>
+      <div class="usage-demo">
+        <div class="usage-example">
+          <span class="usage-icon" aria-hidden="true"><i class="crsx-file"></i></span>
+          <div class="usage-text">Use the icon inline with HTML:</div>
+        </div>
+        <pre class="usage-snippet">&lt;i class="crsx-file"&gt;&lt;/i&gt;</pre>
+      </div>
+  </div>
+  <div class="search">
+    <input id="filter" placeholder="Search icons (e.g. file, home)" aria-label="Search icons">
+  </div>
+</div>
+
+<div class="grid" id="iconGrid">
+  <div class="card" data-name="file">
+    <div class="icon">
+      <i class="crsx-file" aria-hidden="true"></i>
+    </div>
+    <div class="label">file</div>
+  </div>
+  <div class="card" data-name="file-bug">
+    <div class="icon">
+      <i class="crsx-file-bug" aria-hidden="true"></i>
+    </div>
+    <div class="label">file-bug</div>
+  </div>
+  <div class="card" data-name="file-box">
+    <div class="icon">
+      <i class="crsx-file-box" aria-hidden="true"></i>
+    </div>
+    <div class="label">file-box</div>
+  </div>
+  <div class="card" data-name="window">
+    <div class="icon">
+      <i class="crsx-window" aria-hidden="true"></i>
+    </div>
+    <div class="label">window</div>
+  </div>
+  <div class="card" data-name="window-triangle">
+    <div class="icon">
+      <i class="crsx-window-triangle" aria-hidden="true"></i>
+    </div>
+    <div class="label">window-triangle</div>
+  </div>
+
+  <script>
+    const input = document.getElementById('filter');
+    const grid = document.getElementById('iconGrid');
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      const cards = grid.querySelectorAll('.card');
+      let visible = 0;
+      cards.forEach(c => {
+        const name = c.getAttribute('data-name') || '';
+        if (!q || name.indexOf(q) !== -1) { c.style.display = 'block'; visible++; } else { c.style.display = 'none'; }
+      });
+      const countEl = document.querySelector('.count');
+      countEl.textContent = visible + ' icons available';
+      countEl.style.display = visible ? 'block' : 'none';
+    });
+  </script>

@@ -1,0 +1,28 @@
+[class*="crsx-"], [class*="icon-"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[class*="crsx-"]::before, [class*="icon-"]::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-align: center;
+  font-family: 'crsx-icons';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.crsx-file::before { background-image: url('svgs/file.svg'); }
+.crsx-file-bug::before { background-image: url('svgs/file-bug.svg'); }
+.crsx-file-box::before { background-image: url('svgs/file-box.svg'); }
+.crsx-window::before { background-image: url('svgs/window.svg'); }
+.crsx-window-triangle::before { background-image: url('svgs/window-triangle.svg'); }

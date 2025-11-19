@@ -1,0 +1,23 @@
+{
+  "name": "@crsx/icons",
+  "version": "1.0.0",
+  "description": "A collection of SVG icons",
+  "author": "Cristian Militaru",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "files": [
+    "svgs/",
+    "icons.css"
+  ],
+  "keywords": [
+    "icons",
+    "svg"
+  ],
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  }
+}
